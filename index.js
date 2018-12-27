@@ -53,7 +53,6 @@ function requiredDateFormat(d) {
   return `${dateArray.Days[day]} ${dateArray.Months[mon]} ${dat}, ${year}`;
 }
 
-
 function doubleDigit(x) {
   if (x <= 9) return `0${x}`;
   return x;
