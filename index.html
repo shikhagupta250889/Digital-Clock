@@ -14,8 +14,11 @@
 
 <!--show time  -->
 <time id="digitaltime"></time>
-
-<button type="button" name="button" class="toggleButton" onclick="changeTimeFormat()">Change to 12-Hour Mode</button>
+<div class="allButtons">
+  <button type="button" name="button" id="modeButton" onclick="changeTimeFormat()">12-Hour Mode</button>
+  <button type="button" name="button" id="dateButton" onclick="showHideDate()">Hide Date</button>
+  <button type="button" name="button" id="secButton" onclick="showHideSec()">Hide Seconds</button>
+</div>
 
 
 
