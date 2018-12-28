@@ -1,10 +1,13 @@
-var twelveHourtimeFormat = false;
-var previousDate = '';
-var hideDate = false;
-var hideSec = false;
+
+var data = {
+  twelveHourtimeFormat: false,
+  previousDate: '',
+  hideDate: false,
+  hideSec: false
+}
 
 function printTime(d) {
-  document.getElementById('digitaltime').innerHTML = requiredTimeFormat(d, hideSec);
+  document.getElementById('digitaltime').innerHTML = requiredTimeFormat(d, data.hideSec);
 }
 
 function printDate(d) {
@@ -19,9 +22,9 @@ function processDateTime() {
   var d = getCurrentTimeDate();
   var currentDate = d.toDateString();
   printTime(d);
-  if(currentDate !== previousDate) {
+  if(currentDate !== data.previousDate) {
     printDate(d);
-    previousDate = currentDate;
+    data.previousDate = currentDate;
   }
 }
 
@@ -35,7 +38,7 @@ function requiredTimeFormat(d, hideSec) {
   var Min = d.getMinutes();
   var Sec = d.getSeconds();
   var timeSuffix = addAmPm(Hr);
-  if (twelveHourtimeFormat) Hr = changeTo12Hr(Hr);
+  if (data.twelveHourtimeFormat) Hr = changeTo12Hr(Hr);
   var nFormat = `${doubleDigit(Hr)}:${doubleDigit(Min)}`;
   nFormat += hideSec ? '' : `:${doubleDigit(Sec)}`;
   nFormat += ` ${timeSuffix}`;
@@ -50,7 +53,7 @@ function requiredDateFormat(d) {
   var dateArray = {Days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     Months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   }
-  return `${dateArray.Days[day]} ${dateArray.Months[mon]} ${dat}, ${year}`;
+  return `${dateArray.Days[day]}, ${dateArray.Months[mon]} ${dat}, ${year}`;
 }
 
 function doubleDigit(x) {
@@ -65,16 +68,16 @@ function changeTo12Hr(x) {
 }
 
 function changeTimeFormat() {
-  twelveHourtimeFormat = !twelveHourtimeFormat;
+  data.twelveHourtimeFormat = !data.twelveHourtimeFormat;
   var buttonText = "12-Hour Mode";
-  if (twelveHourtimeFormat) buttonText = "24-Hour Mode";
+  if (data.twelveHourtimeFormat) buttonText = "24-Hour Mode";
   changeButtonText(buttonText,"modeButton");
 }
 
 function showHideDate() {
-  hideDate = !hideDate;
+  data.hideDate = !data.hideDate;
   var buttonText = "Hide Date";
-  if (hideDate) {
+  if (data.hideDate) {
     buttonText = "Show Date";
     document.getElementById("digitaldate").style.display = "none";
   }
@@ -85,9 +88,9 @@ function showHideDate() {
 }
 
 function showHideSec() {
-  hideSec = !hideSec;
+  data.hideSec = !data.hideSec;
   var buttonText = "Hide Seconds";
-  if (hideSec) buttonText = "Show Seconds";
+  if (data.hideSec) buttonText = "Show Seconds";
   changeButtonText(buttonText, "secButton");
 }
 
@@ -96,9 +99,13 @@ function changeButtonText(buttonText,idName) {
 }
 
 function addAmPm(x) {
-  if (twelveHourtimeFormat) {
+  if (data.twelveHourtimeFormat) {
     if (x >= 12) return `PM`;
     return `AM`;
   }
     return '';
+}
+
+function buttonVisible(className) {
+  document.querySelector(".allButtons").className = className;
 }

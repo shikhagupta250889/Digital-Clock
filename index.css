@@ -6,16 +6,42 @@ body {
 display: flex;
 justify-content: center;
 align-items: center;
-position: absolute;
-flex-wrap: wrap;
+position: absolute;
+flex-wrap: wrap;
+/* font-family: Helvetica; */
 }
 
 .allButtons {
-  margin-left: 20px;
+  margin-left: 0px;
   background-color: #cdf1f1;
   position: fixed;
-  right: 10px;
-  top: 10px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width : 100%;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.invisible {
+  opacity: .4;
+}
+
+button {
+  background-color: #5db4d2;
+  border: none;
+  padding: 5px 15px;
+  margin: 10px 10px 10px 10px;
+  font-size: 16px;
+  font-family: Helvetica;
+  font-weight: bold;
+  color: white;
+  text-decoration: inherit;
+  border-radius: 2px;
+  outline: 0;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px grey;
 }
 
 #digitaldate {
@@ -24,10 +50,12 @@ flex-wrap: wrap;
   font-size: 50px;
   color: #bae5f3;
   font-family: fantasy;
+  margin-bottom: -20%;
 }
 
 time {
   font-size: 50px;
   color: #5db4d2;
   font-family: fantasy;
+  margin-top: -10%;
 }
